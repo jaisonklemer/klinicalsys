@@ -4,16 +4,19 @@
 
     <item
         android:icon="@drawable/ic_patients"
+        android:id="@+id/btnPatients"
         android:title="Patients"
         app:showAsAction="always" />
 
     <item
         android:icon="@drawable/ic_paper"
+        android:id="@+id/btnAppointments"
         android:title="Appointments"
         app:showAsAction="always" />
 
     <item
         android:icon="@drawable/ic_doctor"
+        android:id="@+id/btnDoctors"
         android:title="Doctors"
         app:showAsAction="always" />
 </menu>

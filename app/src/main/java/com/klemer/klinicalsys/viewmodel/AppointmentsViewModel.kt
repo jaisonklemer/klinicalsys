@@ -2,6 +2,6 @@ package com.klemer.klinicalsys.viewmodel
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class AppointmentsViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

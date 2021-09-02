@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">KlinicalSys</string>
-    <string name="name">Name</string>
+    <string name="name">Full Name</string>
     <string name="age">Age</string>
     <string name="genre">Genre</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="you_cannot_undo_it">You will not be able to undo it</string>
+    <string name="you_re_sure">You\'re sure?</string>
 </resources>

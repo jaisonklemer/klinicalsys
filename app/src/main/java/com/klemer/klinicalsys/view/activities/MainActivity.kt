@@ -1,13 +1,16 @@
 package com.klemer.klinicalsys.view.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.klemer.klinicalsys.R
 import com.klemer.klinicalsys.databinding.ActivityMainBinding
 import com.klemer.klinicalsys.utils.extensions.replaceFragment
-import com.klemer.klinicalsys.view.fragments.MainFragment
-import com.klemer.klinicalsys.view.fragments.PatientDetailFragment
+import com.klemer.klinicalsys.view.fragments.AppointmentsFragment
+import com.klemer.klinicalsys.view.fragments.DoctorsFragment
+import com.klemer.klinicalsys.view.fragments.PatientsFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -19,6 +22,32 @@ class MainActivity : BaseActivity() {
 
         setContentView(binding.root)
 
-        replaceFragment(R.id.root_container, MainFragment.newInstance(), false)
+        replaceFragment(R.id.root_container, PatientsFragment.newInstance(), false)
+
+        setButtonsClick()
+    }
+
+
+    private fun setButtonsClick() {
+        binding.bottomApp.bottomNavView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.btnPatients -> replaceFragment(
+                    R.id.root_container,
+                    PatientsFragment.newInstance(),
+                    false
+                )
+                R.id.btnDoctors -> replaceFragment(
+                    R.id.root_container,
+                    DoctorsFragment.newInstance(),
+                    false
+                )
+                R.id.btnAppointments -> replaceFragment(
+                    R.id.root_container,
+                    AppointmentsFragment.newInstance(),
+                    false
+                )
+            }
+            return@setOnItemSelectedListener true
+        }
     }
 }
