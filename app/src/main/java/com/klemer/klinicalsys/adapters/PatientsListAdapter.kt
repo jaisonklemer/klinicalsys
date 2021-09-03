@@ -3,13 +3,15 @@ package com.klemer.klinicalsys.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.klemer.klinicalsys.R
 import com.klemer.klinicalsys.databinding.PatientListItemBinding
 import com.klemer.klinicalsys.model.Patient
 
-class PatientsListAdapter(val onClick: (Int) -> Unit) : RecyclerView.Adapter<PatientsListVH>() {
-    private val patientsList = mutableListOf<Patient>()
+class PatientsListAdapter(val onClick: (Int) -> Unit) :
+    ListAdapter<Patient, PatientsListVH>(PatientsListDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientsListVH {
         LayoutInflater.from(parent.context)
@@ -19,18 +21,22 @@ class PatientsListAdapter(val onClick: (Int) -> Unit) : RecyclerView.Adapter<Pat
     }
 
     override fun onBindViewHolder(holder: PatientsListVH, position: Int) {
-        holder.bind(patientsList[position])
-
-        holder.itemView.setOnClickListener { onClick(patientsList[position].id) }
+        val item = getItem(position)
+        holder.bind(item)
+        holder.itemView.setOnClickListener { onClick(item.id) }
     }
 
-    override fun getItemCount() = patientsList.size
+}
 
-    fun update(list: MutableList<Patient>) {
-        patientsList.clear()
-        patientsList.addAll(list)
-        notifyDataSetChanged()
+class PatientsListDiff : DiffUtil.ItemCallback<Patient>() {
+    override fun areItemsTheSame(oldItem: Patient, newItem: Patient): Boolean {
+        return oldItem.id == newItem.id
     }
+
+    override fun areContentsTheSame(oldItem: Patient, newItem: Patient): Boolean {
+        return oldItem == newItem
+    }
+
 }
 
 class PatientsListVH(itemView: View) : RecyclerView.ViewHolder(itemView) {

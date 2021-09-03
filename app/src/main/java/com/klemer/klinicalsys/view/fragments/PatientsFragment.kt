@@ -35,7 +35,7 @@ class PatientsFragment : Fragment(R.layout.main_fragment) {
     }
 
     private val patientsObserver = Observer<List<Patient>> {
-        patientAdapter.update(it.toMutableList())
+        patientAdapter.submitList(it)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
