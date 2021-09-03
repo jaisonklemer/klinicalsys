@@ -8,4 +8,8 @@
     <string name="cancel">Cancel</string>
     <string name="you_cannot_undo_it">You will not be able to undo it</string>
     <string name="you_re_sure">You\'re sure?</string>
+    <string name="specialties">Specialties</string>
+    <string name="doctors">Doctors</string>
+    <string name="appointments">Appointments</string>
+    <string name="patients">Patients</string>
 </resources>

@@ -3,20 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@drawable/ic_patients"
         android:id="@+id/btnPatients"
-        android:title="Patients"
+        android:icon="@drawable/ic_patients"
+        android:title="@string/patients"
         app:showAsAction="always" />
 
     <item
-        android:icon="@drawable/ic_paper"
         android:id="@+id/btnAppointments"
-        android:title="Appointments"
+        android:icon="@drawable/ic_paper"
+        android:title="@string/appointments"
         app:showAsAction="always" />
 
     <item
-        android:icon="@drawable/ic_doctor"
         android:id="@+id/btnDoctors"
-        android:title="Doctors"
+        android:icon="@drawable/ic_doctor"
+        android:title="@string/doctors"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/btnSpecialty"
+        android:icon="@drawable/ic_specialty"
+        android:title="@string/specialties"
         app:showAsAction="always" />
 </menu>

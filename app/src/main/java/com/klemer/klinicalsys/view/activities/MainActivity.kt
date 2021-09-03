@@ -8,6 +8,7 @@ import com.klemer.klinicalsys.utils.extensions.replaceFragment
 import com.klemer.klinicalsys.view.fragments.AppointmentsFragment
 import com.klemer.klinicalsys.view.fragments.DoctorsFragment
 import com.klemer.klinicalsys.view.fragments.PatientsFragment
+import com.klemer.klinicalsys.view.fragments.SpecialtyFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,6 +45,12 @@ class MainActivity : BaseActivity() {
                 R.id.btnAppointments -> replaceFragment(
                     R.id.root_container,
                     AppointmentsFragment.newInstance(),
+                    false
+                )
+
+                R.id.btnSpecialty -> replaceFragment(
+                    R.id.root_container,
+                    SpecialtyFragment.newInstance(),
                     false
                 )
             }
