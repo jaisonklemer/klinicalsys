@@ -8,18 +8,26 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SpecialtyViewModel @Inject constructor(private val repository: SpecialtyRepository) :
+class SpecialtyDetailViewModel @Inject constructor(private val repository: SpecialtyRepository) :
     ViewModel() {
 
-    val specialties = MutableLiveData<List<Specialty>>()
+    val actionComplete = MutableLiveData<Boolean>()
+    val specialty = MutableLiveData<Specialty>()
 
-    fun getAll() {
-        specialties.value = repository.getAll()
+    fun getById(id: Int) {
+        specialty.value = repository.getById(id)
     }
 
     fun insert(name: String) {
         val specialty = Specialty(name = name)
         repository.insert(specialty)
+        actionComplete.value = true
+    }
+
+    fun update(specialty: Specialty) {
+        repository.update(specialty)
+        actionComplete.value = true
+
     }
 
 }

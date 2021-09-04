@@ -129,6 +129,7 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
         binding.patientNameEditText.setText(patient?.name)
         binding.patientAgeEditText.setText(patient?.age.toString())
         binding.patientGenreEditText.setText(patient?.genre)
+        binding.patientID.setText(patient?.id.toString())
 
         binding.deleteButton.isEnabled = true
     }

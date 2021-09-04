@@ -1,5 +1,6 @@
 package com.klemer.klinicalsys.view.fragments
 
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -29,10 +30,11 @@ class PatientsFragment : Fragment(R.layout.main_fragment) {
     private lateinit var viewModel: PatientsViewModel
     private lateinit var binding: MainFragmentBinding
 
-    private val patientAdapter = PatientsListAdapter() {
+    private val patientAdapter = PatientsListAdapter {
         PATIENT_ID = it
         createControlActivity(false)
     }
+
 
     private val patientsObserver = Observer<List<Patient>> {
         patientAdapter.submitList(it)

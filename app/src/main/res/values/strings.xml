@@ -12,4 +12,6 @@
     <string name="doctors">Doctors</string>
     <string name="appointments">Appointments</string>
     <string name="patients">Patients</string>
+    <string name="specialty_name">Specialty Name</string>
+    <string name="id">ID</string>
 </resources>

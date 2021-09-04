@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.klemer.klinicalsys.R
+import com.klemer.klinicalsys.viewmodel.DoctorsViewModel
 
 class DoctorsFragment : Fragment() {
 

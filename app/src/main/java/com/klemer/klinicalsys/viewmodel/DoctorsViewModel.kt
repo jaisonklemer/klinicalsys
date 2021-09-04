@@ -1,4 +1,4 @@
-package com.klemer.klinicalsys.view.fragments
+package com.klemer.klinicalsys.viewmodel
 
 import androidx.lifecycle.ViewModel
 

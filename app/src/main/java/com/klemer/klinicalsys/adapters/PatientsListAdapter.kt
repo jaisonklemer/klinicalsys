@@ -11,6 +11,7 @@ import com.klemer.klinicalsys.databinding.PatientListItemBinding
 import com.klemer.klinicalsys.model.Patient
 
 class PatientsListAdapter(val onClick: (Int) -> Unit) :
+
     ListAdapter<Patient, PatientsListVH>(PatientsListDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientsListVH {
@@ -21,14 +22,15 @@ class PatientsListAdapter(val onClick: (Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: PatientsListVH, position: Int) {
-        val item = getItem(position)
-        holder.bind(item)
-        holder.itemView.setOnClickListener { onClick(item.id) }
+        val patient = getItem(position)
+        holder.bind(patient)
+        holder.itemView.setOnClickListener { onClick(patient.id) }
     }
 
 }
 
 class PatientsListDiff : DiffUtil.ItemCallback<Patient>() {
+
     override fun areItemsTheSame(oldItem: Patient, newItem: Patient): Boolean {
         return oldItem.id == newItem.id
     }

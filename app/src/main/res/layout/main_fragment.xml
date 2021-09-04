@@ -9,7 +9,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/patientsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/specialty_list_item" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -23,5 +24,6 @@
         android:tint="@color/east_bay"
         app:borderWidth="0dp"
         app:tint="@android:color/white" />
+
 
 </FrameLayout>

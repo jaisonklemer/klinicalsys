@@ -13,7 +13,9 @@
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.3115646258503401" />
         <entry key="app/src/main/res/layout/patient_detail_fragment.xml" value="0.2953125" />
         <entry key="app/src/main/res/layout/patient_list_item.xml" value="0.2953125" />
+        <entry key="app/src/main/res/layout/specialty_detail_fragment.xml" value="0.19222903885480572" />
         <entry key="app/src/main/res/layout/specialty_fragment.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/specialty_list_item.xml" value="0.2953125" />
         <entry key="app/src/main/res/menu/bottom_items.xml" value="0.2953125" />
       </map>
     </option>
