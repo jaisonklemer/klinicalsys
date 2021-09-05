@@ -14,4 +14,5 @@
     <string name="patients">Patients</string>
     <string name="specialty_name">Specialty Name</string>
     <string name="id">ID</string>
+    <string name="specialty">Specialty</string>
 </resources>

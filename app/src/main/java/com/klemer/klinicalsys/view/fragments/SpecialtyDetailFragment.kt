@@ -1,5 +1,6 @@
 package com.klemer.klinicalsys.view.fragments
 
+import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -46,6 +47,19 @@ class SpecialtyDetailFragment : Fragment(R.layout.specialty_detail_fragment) {
         setupButtonsClick()
     }
 
+    private fun deleteSpecialty() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(getString(R.string.you_cannot_undo_it))
+            .setIcon(R.drawable.ic_trash)
+            .setTitle(getString(R.string.you_re_sure))
+            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                viewModel.delete(specialty!!)
+            }
+            .setNegativeButton(getString(R.string.cancel)) { _, _ -> }
+            .create()
+            .show()
+    }
+
     private fun setupOpbservers() {
         viewModel.specialty.observe(viewLifecycleOwner, specialtyObserver)
         viewModel.actionComplete.observe(viewLifecycleOwner, actionCompleteObserver)
@@ -53,6 +67,7 @@ class SpecialtyDetailFragment : Fragment(R.layout.specialty_detail_fragment) {
 
     private fun setupButtonsClick() {
         binding.saveButton.setOnClickListener { saveSpecialty() }
+        binding.deleteButton.setOnClickListener { deleteSpecialty() }
     }
 
     private fun getParams() {
@@ -76,6 +91,8 @@ class SpecialtyDetailFragment : Fragment(R.layout.specialty_detail_fragment) {
     private fun bindData(it: Specialty) {
         binding.specialtyNameEditText.setText(it.name)
         binding.specialtyID.setText(it.id.toString())
+
+        binding.deleteButton.isEnabled = true
     }
 
     private fun saveSpecialty() {

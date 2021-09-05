@@ -11,4 +11,8 @@ data class Specialty(
     var id: Int = 0,
     @ColumnInfo(name = "specialty_name")
     var name: String,
-)
+) {
+    override fun toString(): String {
+        return name
+    }
+}

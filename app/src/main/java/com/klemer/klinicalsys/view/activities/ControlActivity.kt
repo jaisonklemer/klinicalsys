@@ -6,6 +6,7 @@ import com.klemer.klinicalsys.R
 import com.klemer.klinicalsys.databinding.ActivityControlBinding
 import com.klemer.klinicalsys.enums.Types
 import com.klemer.klinicalsys.utils.extensions.replaceFragment
+import com.klemer.klinicalsys.view.fragments.DoctorDetailFragment
 import com.klemer.klinicalsys.view.fragments.PatientDetailFragment
 import com.klemer.klinicalsys.view.fragments.SpecialtyDetailFragment
 import com.klemer.klinicalsys.view.fragments.SpecialtyFragment
@@ -17,6 +18,7 @@ class ControlActivity : BaseActivity() {
     private var type: Int? = null
     private var patient_id: Int? = null
     private var specialty_id: Int? = null
+    private var doctor_id: Int? = null
     private lateinit var currentFragment: Fragment
 
     private lateinit var binding: ActivityControlBinding
@@ -48,6 +50,11 @@ class ControlActivity : BaseActivity() {
                 currentFragment = SpecialtyDetailFragment.newInstance()
                 specialty_id?.let { args.putInt("specialty_id", it) }
             }
+
+            Types.DOCTOR.type -> {
+                currentFragment = DoctorDetailFragment.newInstance()
+                doctor_id?.let { args.putInt("doctor_id", it) }
+            }
         }
         currentFragment.arguments = args
         return currentFragment
@@ -57,5 +64,6 @@ class ControlActivity : BaseActivity() {
         type = intent.getIntExtra("type", 1)
         patient_id = intent.getIntExtra("patient_id", 0)
         specialty_id = intent.getIntExtra("specialty_id", 0)
+        doctor_id = intent.getIntExtra("doctor_id", 0)
     }
 }

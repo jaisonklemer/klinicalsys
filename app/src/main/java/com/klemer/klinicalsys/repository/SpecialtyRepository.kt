@@ -22,4 +22,8 @@ class SpecialtyRepository @Inject constructor(val dao: SpecialtyDAO) {
         dao.update(specialty)
     }
 
+    fun delete(specialty: Specialty) {
+        dao.delete(specialty)
+    }
+
 }

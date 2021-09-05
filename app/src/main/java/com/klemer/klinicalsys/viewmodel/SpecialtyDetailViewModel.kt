@@ -27,7 +27,11 @@ class SpecialtyDetailViewModel @Inject constructor(private val repository: Speci
     fun update(specialty: Specialty) {
         repository.update(specialty)
         actionComplete.value = true
+    }
 
+    fun delete(specialty: Specialty) {
+        repository.delete(specialty)
+        actionComplete.value = true
     }
 
 }
