@@ -44,7 +44,6 @@ class SpecialtiesVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val binding = SpecialtyListItemBinding.bind(itemView)
 
     fun bind(specialty: Specialty) {
-        binding.specialtyID.text = specialty.id.toString()
         binding.specialtyName.text = specialty.name
     }
 

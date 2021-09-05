@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.klemer.klinicalsys.R
+import com.klemer.klinicalsys.databinding.DoctorListItemBinding
 import com.klemer.klinicalsys.databinding.SpecialtyListItemBinding
 
 import com.klemer.klinicalsys.model.DoctorPOJO
@@ -16,7 +17,7 @@ class DoctorsAdapter(private val itemClick: (Int) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorsVH {
         LayoutInflater.from(parent.context)
-            .inflate(R.layout.specialty_list_item, parent, false).apply {
+            .inflate(R.layout.doctor_list_item, parent, false).apply {
                 return DoctorsVH(this)
             }
     }
@@ -43,11 +44,11 @@ class DoctorsDiff : DiffUtil.ItemCallback<DoctorPOJO>() {
 
 class DoctorsVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private val binding = SpecialtyListItemBinding.bind(itemView)
+    private val binding = DoctorListItemBinding.bind(itemView)
 
     fun bind(doctor: DoctorPOJO) {
-        binding.specialtyName.text = doctor.doctor?.name
-        binding.specialtyID.text = doctor.doctor?.id.toString()
+        binding.doctorName.text = doctor.doctor?.name
+        binding.specialtyName.text = doctor.speciality?.name
     }
 
 }

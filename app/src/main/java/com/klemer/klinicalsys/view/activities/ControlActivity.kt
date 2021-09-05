@@ -42,16 +42,20 @@ class ControlActivity : BaseActivity() {
     private fun setupFragment(): Fragment {
         val args = Bundle()
         when (type) {
+
             Types.PATIENT.type -> {
+                setAppBarTitle("Edit Patient")
                 currentFragment = PatientDetailFragment.newInstance()
                 patient_id?.let { args.putInt("patient_id", it) }
             }
             Types.SPECIALTY.type -> {
+                setAppBarTitle("Edit Specialty")
                 currentFragment = SpecialtyDetailFragment.newInstance()
                 specialty_id?.let { args.putInt("specialty_id", it) }
             }
 
             Types.DOCTOR.type -> {
+                setAppBarTitle("Edit Doctor")
                 currentFragment = DoctorDetailFragment.newInstance()
                 doctor_id?.let { args.putInt("doctor_id", it) }
             }
@@ -65,5 +69,9 @@ class ControlActivity : BaseActivity() {
         patient_id = intent.getIntExtra("patient_id", 0)
         specialty_id = intent.getIntExtra("specialty_id", 0)
         doctor_id = intent.getIntExtra("doctor_id", 0)
+    }
+
+    private fun setAppBarTitle(title: String) {
+        supportActionBar?.title = title
     }
 }

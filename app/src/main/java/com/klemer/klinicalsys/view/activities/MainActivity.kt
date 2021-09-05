@@ -23,6 +23,7 @@ class MainActivity : BaseActivity() {
 
         setContentView(binding.root)
 
+        setAppBarTitle("KlinicalSys: Patients")
         replaceFragment(R.id.root_container, PatientsFragment.newInstance(), false)
 
         setButtonsClick()
@@ -32,29 +33,45 @@ class MainActivity : BaseActivity() {
     private fun setButtonsClick() {
         binding.bottomApp.bottomNavView.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.btnPatients -> replaceFragment(
-                    R.id.root_container,
-                    PatientsFragment.newInstance(),
-                    false
-                )
-                R.id.btnDoctors -> replaceFragment(
-                    R.id.root_container,
-                    DoctorsFragment.newInstance(),
-                    false
-                )
-                R.id.btnAppointments -> replaceFragment(
-                    R.id.root_container,
-                    AppointmentsFragment.newInstance(),
-                    false
-                )
+                R.id.btnPatients -> {
+                    setAppBarTitle("KlinicalSys: Patients")
+                    replaceFragment(
+                        R.id.root_container,
+                        PatientsFragment.newInstance(),
+                        false
+                    )
+                }
+                R.id.btnDoctors -> {
+                    setAppBarTitle("KlinicalSys: Doctors")
+                    replaceFragment(
+                        R.id.root_container,
+                        DoctorsFragment.newInstance(),
+                        false
+                    )
+                }
+                R.id.btnAppointments -> {
+                    setAppBarTitle("KlinicalSys: Appointments")
+                    replaceFragment(
+                        R.id.root_container,
+                        AppointmentsFragment.newInstance(),
+                        false
+                    )
+                }
 
-                R.id.btnSpecialty -> replaceFragment(
-                    R.id.root_container,
-                    SpecialtyFragment.newInstance(),
-                    false
-                )
+                R.id.btnSpecialty -> {
+                    setAppBarTitle("KlinicalSys: Specialties")
+                    replaceFragment(
+                        R.id.root_container,
+                        SpecialtyFragment.newInstance(),
+                        false
+                    )
+                }
             }
             return@setOnItemSelectedListener true
         }
+    }
+
+    private fun setAppBarTitle(title: String) {
+        supportActionBar?.title = title
     }
 }
