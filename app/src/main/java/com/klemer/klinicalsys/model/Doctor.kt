@@ -12,7 +12,11 @@ data class Doctor(
     var name: String,
 
     var specialtyFk: Int
-)
+) {
+    override fun toString(): String {
+        return name
+    }
+}
 
 data class DoctorPOJO(
     @Embedded

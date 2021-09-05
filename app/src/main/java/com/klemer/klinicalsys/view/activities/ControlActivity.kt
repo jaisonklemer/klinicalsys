@@ -6,10 +6,7 @@ import com.klemer.klinicalsys.R
 import com.klemer.klinicalsys.databinding.ActivityControlBinding
 import com.klemer.klinicalsys.enums.Types
 import com.klemer.klinicalsys.utils.extensions.replaceFragment
-import com.klemer.klinicalsys.view.fragments.DoctorDetailFragment
-import com.klemer.klinicalsys.view.fragments.PatientDetailFragment
-import com.klemer.klinicalsys.view.fragments.SpecialtyDetailFragment
-import com.klemer.klinicalsys.view.fragments.SpecialtyFragment
+import com.klemer.klinicalsys.view.fragments.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,6 +55,12 @@ class ControlActivity : BaseActivity() {
                 setAppBarTitle("Edit Doctor")
                 currentFragment = DoctorDetailFragment.newInstance()
                 doctor_id?.let { args.putInt("doctor_id", it) }
+            }
+
+            Types.APPOINTMENT.type -> {
+                setAppBarTitle("Edit Appointment")
+                currentFragment = AppointmentDetailFragment.newInstance()
+//                doctor_id?.let { args.putInt("doctor_id", it) }
             }
         }
         currentFragment.arguments = args

@@ -19,7 +19,11 @@ data class Patient(
 
     @ColumnInfo(name = "patient_genre")
     var genre: String
-)
+){
+    override fun toString(): String {
+        return name
+    }
+}
 
 //id, nome, idade e sexo.
 // Nele deve ser possívels lista todos os paciente, alterar um paciente,
