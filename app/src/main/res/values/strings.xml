@@ -16,4 +16,10 @@
     <string name="id">ID</string>
     <string name="specialty">Specialty</string>
     <string name="patient">Patient</string>
+    <string name="doctor">Doctor</string>
+    <string name="filter_appointments">Filter Appointments</string>
+    <string name="clear_filters">Clear Filters</string>
+    <string name="filter">Filter</string>
+    <string name="gender">Gender</string>
+    <string name="patient_gender">Patient Gender</string>
 </resources>

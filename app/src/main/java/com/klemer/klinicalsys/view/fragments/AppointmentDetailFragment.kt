@@ -1,5 +1,6 @@
 package com.klemer.klinicalsys.view.fragments
 
+import android.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import com.klemer.klinicalsys.R
 import com.klemer.klinicalsys.databinding.AppointmentDetailFragmentBinding
-import com.klemer.klinicalsys.model.AppointmentPOJO
-import com.klemer.klinicalsys.model.Doctor
-import com.klemer.klinicalsys.model.DoctorPOJO
-import com.klemer.klinicalsys.model.Patient
+import com.klemer.klinicalsys.model.*
 import com.klemer.klinicalsys.viewmodel.AppointmentDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +25,7 @@ class AppointmentDetailFragment : Fragment(R.layout.appointment_detail_fragment)
     private var DOCTOR_ID: Int? = null
     private var PATIENT_ID: Int? = null
     private var APOINTMENT_ID: Int? = null
+    private var appointment: Appointment? = null
 
 
     private val doctorObserver = Observer<List<DoctorPOJO>> {
@@ -34,7 +33,10 @@ class AppointmentDetailFragment : Fragment(R.layout.appointment_detail_fragment)
     }
 
     private val appointmentObserver = Observer<AppointmentPOJO> {
-        if (it != null) bindLoadedData(it)
+        if (it != null) {
+            appointment = it.appointment
+            bindLoadedData(it)
+        }
     }
 
     private val patientsObserver = Observer<List<Patient>> {
@@ -92,6 +94,7 @@ class AppointmentDetailFragment : Fragment(R.layout.appointment_detail_fragment)
 
     private fun setupButtonsClick() {
         binding.saveButton.setOnClickListener { saveAppointment() }
+        binding.deleteButton.setOnClickListener { deleteAppointment() }
     }
 
     private fun setupDoctorsDropdown(doctors: List<DoctorPOJO>) {
@@ -130,6 +133,19 @@ class AppointmentDetailFragment : Fragment(R.layout.appointment_detail_fragment)
         binding.appointmentDoctor.setText(appointment.doctor.name, false)
         binding.appointmentPatientName.setText(appointment.patient.name, false)
 
+    }
+
+    private fun deleteAppointment() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(getString(R.string.you_cannot_undo_it))
+            .setIcon(R.drawable.ic_trash)
+            .setTitle(getString(R.string.you_re_sure))
+            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+                viewModel.delete(appointment!!)
+            }
+            .setNegativeButton(getString(R.string.cancel)) { _, _ -> }
+            .create()
+            .show()
     }
 
 }

@@ -1,6 +1,9 @@
 package com.klemer.klinicalsys.view.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.klemer.klinicalsys.R
 import com.klemer.klinicalsys.databinding.ActivityMainBinding
@@ -74,4 +77,5 @@ class MainActivity : BaseActivity() {
     private fun setAppBarTitle(title: String) {
         supportActionBar?.title = title
     }
+
 }

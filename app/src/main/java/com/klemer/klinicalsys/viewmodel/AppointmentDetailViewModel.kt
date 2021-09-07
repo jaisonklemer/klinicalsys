@@ -42,4 +42,9 @@ class AppointmentDetailViewModel @Inject constructor(
         appointment.value = appointmentRepository.byId(id)
     }
 
+    fun delete(appointment: Appointment) {
+        appointmentRepository.delete(appointment)
+        actionComplete.value = true
+    }
+
 }
