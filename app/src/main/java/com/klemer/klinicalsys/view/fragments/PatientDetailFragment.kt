@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.klemer.klinicalsys.R
@@ -17,9 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
     private var PATIENT_ID: Int? = null
     private var patient: Patient? = null
+    private var selectedGenre: String? = null
 
     companion object {
         fun newInstance() = PatientDetailFragment()
+
+        val GENRES = listOf("Male", "Female", "Others")
     }
 
     private lateinit var viewModel: PatientDetailViewModel
@@ -53,9 +57,11 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
         viewModel = ViewModelProvider(this).get(PatientDetailViewModel::class.java)
         binding = PatientDetailFragmentBinding.bind(view)
 
+        setupGenresDropdown()
         setupObservers()
         checkParams()
         setButtonClickListeners()
+
     }
 
     private fun setupObservers() {
@@ -64,16 +70,28 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
         viewModel.actionInfo.observe(viewLifecycleOwner, actionInfoMsg)
     }
 
+    private fun setupGenresDropdown() {
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            GENRES
+        )
+
+        binding.atvGenres.setAdapter(adapter)
+        binding.atvGenres.setOnItemClickListener { adapterView, view, i, l ->
+            selectedGenre = adapterView.getItemAtPosition(i).toString()
+        }
+    }
+
     private fun savePatient() {
         val name = binding.patientNameEditText.text.toString()
         val age = (binding.patientAgeEditText.text.toString()).toInt()
-        val genre = binding.patientGenreEditText.text.toString()
 
-        if (name.isNotEmpty() && genre.isNotEmpty()) {
+        if (name.isNotEmpty() && selectedGenre != null) {
             if (PATIENT_ID != null) {
                 viewModel.updatePatient(this.buildPatient())
             } else {
-                viewModel.savePatient(name = name, age = age, genre = genre)
+                viewModel.savePatient(name = name, age = age, genre = selectedGenre!!.toString())
             }
         }
     }
@@ -87,11 +105,10 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
     private fun buildPatient(): Patient {
         val name = binding.patientNameEditText.text.toString()
         val age = (binding.patientAgeEditText.text.toString()).toInt()
-        val genre = binding.patientGenreEditText.text.toString()
 
         patient?.name = name
         patient?.age = age
-        patient?.genre = genre
+        patient?.genre = selectedGenre!!
         return patient!!
     }
 
@@ -128,7 +145,8 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
     private fun loadPatientsDetail(patient: Patient?) {
         binding.patientNameEditText.setText(patient?.name)
         binding.patientAgeEditText.setText(patient?.age.toString())
-        binding.patientGenreEditText.setText(patient?.genre)
+        binding.atvGenres.setText(patient?.genre, false)
+
         binding.patientID.setText(patient?.id.toString())
 
         binding.deleteButton.isEnabled = true

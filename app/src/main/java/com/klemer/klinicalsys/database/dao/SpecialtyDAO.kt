@@ -12,12 +12,12 @@ interface SpecialtyDAO {
     @Delete
     fun delete(specialty: Specialty)
 
-    @Query("SELECT * FROM Specialty")
+    @Query("SELECT * FROM Specialty ORDER BY specialty_name")
     fun all(): List<Specialty>
 
     @Update
     fun update(specialty: Specialty)
 
     @Query("SELECT * FROM SPECIALTY WHERE specialty_id = :id")
-    fun getById(id: Int) : Specialty
+    fun getById(id: Int): Specialty
 }

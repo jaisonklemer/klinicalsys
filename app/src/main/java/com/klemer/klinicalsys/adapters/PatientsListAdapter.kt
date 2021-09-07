@@ -47,5 +47,6 @@ class PatientsListVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(patient: Patient) {
         binding.patientNameTxtView.text = patient.name
+        binding.tvPatientAge.text = "Age: ${patient.age}"
     }
 }

@@ -16,6 +16,7 @@ class ControlActivity : BaseActivity() {
     private var patient_id: Int? = null
     private var specialty_id: Int? = null
     private var doctor_id: Int? = null
+    private var appointment_id: Int? = null
     private lateinit var currentFragment: Fragment
 
     private lateinit var binding: ActivityControlBinding
@@ -60,7 +61,7 @@ class ControlActivity : BaseActivity() {
             Types.APPOINTMENT.type -> {
                 setAppBarTitle("Edit Appointment")
                 currentFragment = AppointmentDetailFragment.newInstance()
-//                doctor_id?.let { args.putInt("doctor_id", it) }
+                appointment_id?.let { args.putInt("appointment_id", it) }
             }
         }
         currentFragment.arguments = args
@@ -72,6 +73,7 @@ class ControlActivity : BaseActivity() {
         patient_id = intent.getIntExtra("patient_id", 0)
         specialty_id = intent.getIntExtra("specialty_id", 0)
         doctor_id = intent.getIntExtra("doctor_id", 0)
+        appointment_id = intent.getIntExtra("appointment_id", 0)
     }
 
     private fun setAppBarTitle(title: String) {

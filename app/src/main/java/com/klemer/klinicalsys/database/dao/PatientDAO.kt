@@ -9,7 +9,7 @@ interface PatientDAO {
     @Insert
     fun insert(patient: Patient)
 
-    @Query("SELECT * FROM PATIENT")
+    @Query("SELECT * FROM PATIENT ORDER BY patient_name")
     fun all(): List<Patient>
 
     @Update

@@ -2,6 +2,7 @@ package com.klemer.klinicalsys.di
 
 import android.content.Context
 import com.klemer.klinicalsys.database.AppDatabase
+import com.klemer.klinicalsys.database.dao.AppointmentDAO
 import com.klemer.klinicalsys.database.dao.DoctorDAO
 import com.klemer.klinicalsys.database.dao.PatientDAO
 import com.klemer.klinicalsys.database.dao.SpecialtyDAO
@@ -30,6 +31,11 @@ object HiltModule {
     @Provides
     fun provideDoctorDAO(@ApplicationContext context: Context): DoctorDAO {
         return AppDatabase.getInstance(context).doctorDAO()
+    }
+
+    @Provides
+    fun provideAppointmentDAO(@ApplicationContext context: Context): AppointmentDAO {
+        return AppDatabase.getInstance(context).appointmentDAO()
     }
 
     @Provides
