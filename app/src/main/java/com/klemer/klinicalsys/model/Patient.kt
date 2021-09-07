@@ -17,14 +17,10 @@ data class Patient(
     @ColumnInfo(name = "patient_age")
     var age: Int,
 
-    @ColumnInfo(name = "patient_genre")
-    var genre: String
+    @ColumnInfo(name = "patient_gender")
+    var gender: String
 ){
     override fun toString(): String {
         return name
     }
 }
-
-//id, nome, idade e sexo.
-// Nele deve ser possívels lista todos os paciente, alterar um paciente,
-// inserir um paciente ou excluir um paciente.

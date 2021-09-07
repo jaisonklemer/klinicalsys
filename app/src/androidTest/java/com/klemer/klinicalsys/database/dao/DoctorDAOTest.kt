@@ -37,7 +37,7 @@ class DoctorDAOTest {
     }
 
     @Test
-    fun testing_insert() {
+    fun testing_insert_doctor() {
         val s1 = Specialty(1, "s1")
         val s2 = Specialty(2, "s2")
         daoSpeciality.insert(s1)
@@ -51,5 +51,37 @@ class DoctorDAOTest {
 
         val results = daoDoctor.fetch()
         assertThat(results).hasSize(listToInsert.size)
+    }
+
+    @Test
+    fun testing_delete_doctor() {
+        val s1 = Specialty(1, "s1")
+        daoSpeciality.insert(s1)
+
+        val p2 = Doctor(id = 1, name = "Roberto", specialtyFk = s1.id)
+        val listToInsert = arrayListOf(p2)
+
+        daoDoctor.insert(listToInsert)
+        daoDoctor.delete(p2)
+
+        val results = daoDoctor.fetch()
+        assertThat(results).hasSize(0)
+    }
+
+    @Test
+    fun testing_update_doctor() {
+        val s1 = Specialty(1, "s1")
+        daoSpeciality.insert(s1)
+
+        val doctor = Doctor(id = 1, name = "Roberto", specialtyFk = s1.id)
+        val listToInsert = arrayListOf(doctor)
+
+        daoDoctor.insert(listToInsert)
+
+        doctor.name = "Jaison"
+        daoDoctor.update(doctor)
+
+        val results = daoDoctor.fetch(doctor.id)
+        assertThat(results.doctor?.name).isEqualTo("Jaison")
     }
 }

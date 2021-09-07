@@ -35,7 +35,7 @@ class PatientDAOTest {
 
     @Test
     fun test_insert_patient_should_return_true() {
-        val patient = Patient(id = 1, name = "Jaison", age = 23, genre = "Male")
+        val patient = Patient(id = 1, name = "Jaison", age = 23, gender = "Male")
 
         dao.insert(patient)
 
@@ -46,7 +46,7 @@ class PatientDAOTest {
 
     @Test
     fun test_update_patient_age_should_return_24() {
-        val patient = Patient(id = 1, name = "Jaison", age = 23, genre = "Male")
+        val patient = Patient(id = 1, name = "Jaison", age = 23, gender = "Male")
 
         dao.insert(patient)
 
@@ -62,7 +62,7 @@ class PatientDAOTest {
 
     @Test
     fun test_delete_patient() {
-        val patient = Patient(id = 1, name = "Jaison", age = 23, genre = "Male")
+        val patient = Patient(id = 1, name = "Jaison", age = 23, gender = "Male")
 
         dao.insert(patient)
 

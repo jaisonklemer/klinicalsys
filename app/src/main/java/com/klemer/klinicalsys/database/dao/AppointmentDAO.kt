@@ -26,7 +26,7 @@ interface AppointmentDAO {
     fun byId(id: Int): AppointmentPOJO
 
     @Transaction
-    @Query("Select * from Appointment inner join Patient on patient.patient_id = patientFk where patient_genre = :gender")
+    @Query("Select * from Appointment inner join Patient on patient.patient_id = patientFk where patient_gender = :gender")
     fun fetch(gender: String): List<AppointmentPOJO>
 
     @Transaction
@@ -38,7 +38,7 @@ interface AppointmentDAO {
         "SELECT * FROM Appointment " +
                 "INNER JOIN Doctor ON doctor.doctor_id = doctorFk " +
                 "INNER JOIN Patient ON patient.patient_id = patientFk " +
-                "WHERE patient_genre = :gender " +
+                "WHERE patient_gender = :gender " +
                 "AND doctor_id = :doctorId"
     )
     fun fetch(gender: String, doctorId: Int): List<AppointmentPOJO>

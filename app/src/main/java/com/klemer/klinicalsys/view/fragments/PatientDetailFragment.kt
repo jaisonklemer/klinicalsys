@@ -18,12 +18,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
     private var PATIENT_ID: Int? = null
     private var patient: Patient? = null
-    private var selectedGenre: String? = null
+    private var selectedGender: String? = null
 
     companion object {
         fun newInstance() = PatientDetailFragment()
 
-        val GENRES = listOf("Male", "Female", "Others")
+        val GENDERS = listOf("Male", "Female", "Others")
     }
 
     private lateinit var viewModel: PatientDetailViewModel
@@ -57,7 +57,7 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
         viewModel = ViewModelProvider(this).get(PatientDetailViewModel::class.java)
         binding = PatientDetailFragmentBinding.bind(view)
 
-        setupGenresDropdown()
+        setupGendersDropdown()
         setupObservers()
         checkParams()
         setButtonClickListeners()
@@ -70,16 +70,16 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
         viewModel.actionInfo.observe(viewLifecycleOwner, actionInfoMsg)
     }
 
-    private fun setupGenresDropdown() {
+    private fun setupGendersDropdown() {
         val adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_dropdown_item_1line,
-            GENRES
+            GENDERS
         )
 
-        binding.atvGenres.setAdapter(adapter)
-        binding.atvGenres.setOnItemClickListener { adapterView, view, i, l ->
-            selectedGenre = adapterView.getItemAtPosition(i).toString()
+        binding.atvGenders.setAdapter(adapter)
+        binding.atvGenders.setOnItemClickListener { adapterView, view, i, l ->
+            selectedGender = adapterView.getItemAtPosition(i).toString()
         }
     }
 
@@ -87,11 +87,11 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
         val name = binding.patientNameEditText.text.toString()
         val age = (binding.patientAgeEditText.text.toString()).toInt()
 
-        if (name.isNotEmpty() && selectedGenre != null) {
+        if (name.isNotEmpty() && selectedGender != null) {
             if (PATIENT_ID != null) {
                 viewModel.updatePatient(this.buildPatient())
             } else {
-                viewModel.savePatient(name = name, age = age, genre = selectedGenre!!.toString())
+                viewModel.savePatient(name = name, age = age, genre = selectedGender!!.toString())
             }
         }
     }
@@ -108,7 +108,7 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
 
         patient?.name = name
         patient?.age = age
-        patient?.genre = selectedGenre!!
+        patient?.gender = selectedGender!!
         return patient!!
     }
 
@@ -145,7 +145,7 @@ class PatientDetailFragment : Fragment(R.layout.patient_detail_fragment) {
     private fun loadPatientsDetail(patient: Patient?) {
         binding.patientNameEditText.setText(patient?.name)
         binding.patientAgeEditText.setText(patient?.age.toString())
-        binding.atvGenres.setText(patient?.genre, false)
+        binding.atvGenders.setText(patient?.gender, false)
 
         binding.patientID.setText(patient?.id.toString())
 

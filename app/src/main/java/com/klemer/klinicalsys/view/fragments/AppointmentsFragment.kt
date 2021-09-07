@@ -34,7 +34,7 @@ class AppointmentsFragment : Fragment(R.layout.appointments_fragment) {
     private var APPOINTMENT_ID: Int? = null
 
     private var doctorFilter: Int? = null
-    private var genreFilter: String = ""
+    private var genderFilter: String = ""
 
     private val adapter = AppointmentAdapter {
         APPOINTMENT_ID = it
@@ -88,7 +88,7 @@ class AppointmentsFragment : Fragment(R.layout.appointments_fragment) {
         setupButtonsClick()
         setupObservers()
         setupRecyclerView()
-        setupGenresDropdown()
+        setupGendesDropdown()
     }
 
     override fun onResume() {
@@ -136,24 +136,24 @@ class AppointmentsFragment : Fragment(R.layout.appointments_fragment) {
         }
     }
 
-    private fun setupGenresDropdown() {
+    private fun setupGendesDropdown() {
         val adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_dropdown_item_1line,
-            PatientDetailFragment.GENRES
+            PatientDetailFragment.GENDERS
         )
 
         binding.includeFilters.acGenderFilter.setAdapter(adapter)
         binding.includeFilters.acGenderFilter.setOnItemClickListener { adapterView, view, i, l ->
-            genreFilter = adapterView.getItemAtPosition(i).toString()
+            genderFilter = adapterView.getItemAtPosition(i).toString()
         }
     }
 
     private fun filter() {
-        if (genreFilter.isNotEmpty() && doctorFilter == null) viewModel.filter(genreFilter)
-        if (genreFilter.isEmpty() && doctorFilter != null) viewModel.filter(doctorFilter!!)
-        if (genreFilter.isNotEmpty() && doctorFilter != null) viewModel.filter(
-            genreFilter,
+        if (genderFilter.isNotEmpty() && doctorFilter == null) viewModel.filter(genderFilter)
+        if (genderFilter.isEmpty() && doctorFilter != null) viewModel.filter(doctorFilter!!)
+        if (genderFilter.isNotEmpty() && doctorFilter != null) viewModel.filter(
+            genderFilter,
             doctorFilter!!
         )
     }

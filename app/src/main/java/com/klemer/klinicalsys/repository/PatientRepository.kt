@@ -8,8 +8,8 @@ class PatientRepository @Inject constructor(
     private val dao: PatientDAO
 ) {
 
-    fun savePatient(name: String, age: Int, genre: String) {
-        val patient = Patient(name = name, age = age, genre = genre)
+    fun savePatient(name: String, age: Int, gender: String) {
+        val patient = Patient(name = name, age = age, gender = gender)
         dao.insert(patient)
     }
 
